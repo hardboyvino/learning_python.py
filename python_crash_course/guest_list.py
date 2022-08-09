@@ -54,4 +54,3 @@ while len(guest_list) > 2:
 print()
 
 print(guest_list)
-
