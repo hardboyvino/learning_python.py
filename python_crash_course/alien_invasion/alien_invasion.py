@@ -1,8 +1,8 @@
-import sys
 import pygame
 
 from settings import Settings
 from ship import Ship
+import game_functions as gf
 
 
 def main():
@@ -30,19 +30,9 @@ def run_game():
 
     # --- START THE MAIN LOOP OF THE GAME --- #
     while True:
-
-        # --- CHECK FOR KEYBOARD AND MOUSE ACTIONS --- #
-        for event in pygame.event.get():
-            # --- IF USER CLICKS ON GAME WINDOW CLOSE BUTTON (TOP RIGHT X), THE GAME PROGRAM CLOSES --- #
-            if event.type == pygame.QUIT:
-                sys.exit()
-
-        # --- FILL THE SCREEN WITH BACKGROUND COLOR AND LOAD THE SHOOTER AT STARTING POSITION --- #
-        screen.fill(ai_settings.background_color)
-        ship.blitme()
-
-        # --- DISPLAY THE MOST RECENTLY DRAWN SCREEN --- #
-        pygame.display.flip()
+        gf.check_events(ship)
+        ship.update_movement()
+        gf.update_screen(ai_settings, screen, ship)
 
 
 if __name__ == "__main__":
