@@ -2,12 +2,14 @@
 The main program for the road rage game.
 """
 
-import sys
 import pygame
+from pygame.sprite import Group
+
 
 from settings import Settings
 from car import HeroCar
 import game_functions as gf
+
 
 def run_game():
     """Initialize the game and creates a screen objects."""
@@ -22,10 +24,23 @@ def run_game():
 
     # --- create hero car instance
     hero_car = HeroCar(screen)
+    villian_cars = Group()
+
+
 
     # --- start the main loop for the game
     while True:
         gf.check_events(hero_car)
+        gf.new_car(villian_cars, screen, settings)
         hero_car.update()
-        gf.update_screen(settings, screen, hero_car)
+        villian_cars.update()
+
+        # --- get rid of cars that are offscreen
+        for villian_car in villian_cars.copy():
+            if villian_car.rect.top > settings.screen_height:
+                villian_cars.remove(villian_car)
+
+        gf.update_screen(settings, screen, hero_car, villian_cars)
+
+
 run_game()
