@@ -4,7 +4,7 @@ All the game functions.
 
 import sys
 import pygame
-from time import sleep
+from datetime import datetime
 
 from car import VillianCar
 
@@ -55,8 +55,51 @@ def new_car(villian_cars, screen, settings):
         new_car = VillianCar(screen, settings)
         villian_cars.add(new_car)
 
+        # --- spacing between cars
+        villian_height = new_car.rect.height
+        available_space = settings.screen_height - (2 * villian_height)
+        number_villians = int(available_space / (2 * villian_height))
 
-def update_screen(settings, screen, hero_car, villian_cars):
+    # --- get rid of cars that are offscreen
+    for villian_car in villian_cars.copy():
+        if villian_car.rect.top > settings.screen_height:
+            villian_cars.remove(villian_car)
+
+
+def car_collision(villian_cars, settings, stats, screen, background):
+    """Detect car collisions and end the game if out of lives."""
+    if stats.cars_left > 0:
+        stats.cars_left -= 1
+
+        # --- empty the villian cars sprite group
+        villian_cars.empty()
+
+        new_car(villian_cars, screen, settings)
+
+    else:
+        villian_cars.empty()
+        background.scroll = 0
+        stats.game_active = False
+
+
+def update_cars(hero_car, villian_cars, settings, stats, screen,background):
+    """Update game reaction when there is a collision."""
+    if pygame.sprite.spritecollideany(hero_car, villian_cars):
+        car_collision(villian_cars, settings, stats, screen, background)
+
+
+# def stop_game(settings, clock, start):
+#     start -= 1
+
+#     if start == 0:
+#         settings.increase_difficulty()
+#         print("Yes!")
+#         # start = 500
+
+#     clock.tick(100)
+
+
+def update_screen(hero_car, villian_cars):
     """Update the screen with required images and background colours."""
     # --- fill the screen with specific background colour
     # --- draw the car to screen

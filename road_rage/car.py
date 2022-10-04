@@ -17,6 +17,7 @@ class HeroCar(object):
         # --- load the car's image and its rectangles (rect)
         self.image = pygame.image.load("images/hero_car.bmp")
         self.rect = self.image.get_rect()
+        self.height = self.image.get_height()
         self.screen_rect = screen.get_rect()
 
         # --- set the colorkey of the image's white background to be transparent
@@ -72,13 +73,15 @@ class VillianCar(Sprite):
         # --- start the new car at a random position at the top of the screen
         self.rect.x = choice(start_position)
         self.rect.y = self.screen_rect.top
+        self.rect.y = float(self.rect.y)
 
         # --- assign the drop speed variable from settings
         self.drop_speed = self.settings.villian_car_drop_speed
 
     def update(self):
         """Move the villian's car down the screen."""
-        self.rect.y += self.drop_speed
+        self.rect.y += self.settings.villian_car_drop_speed
+        # print(self.rect.y)
 
 
     def blitme(self):

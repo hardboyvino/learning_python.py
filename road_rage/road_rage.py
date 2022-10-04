@@ -4,13 +4,16 @@ The main program for the road rage game.
 
 import pygame
 from pygame.sprite import Group
-import math
+from datetime import datetime
 
 
 from background import GameBackground
 from settings import Settings
 from car import HeroCar
+from game_stats import GameStats
 import game_functions as gf
+
+start_time = datetime.now()
 
 
 def run_game():
@@ -27,25 +30,28 @@ def run_game():
     # --- create hero car instance
     hero_car = HeroCar(screen, settings.hero_car_speed)
     villian_cars = Group()
+    stats = GameStats(settings)
+
+    # clock = pygame.time.Clock()
+    # start = 500
 
     # --- create background instance
     background = GameBackground(screen, settings.screen_width, settings.screen_height, settings.timer, settings.fps)
 
-
     # --- start the main loop for the game
     while True:
-        background.blitme()
         gf.check_events(hero_car)
-        gf.new_car(villian_cars, screen, settings)
-        hero_car.update()
-        villian_cars.update()
 
-        # --- get rid of cars that are offscreen
-        for villian_car in villian_cars.copy():
-            if villian_car.rect.top > settings.screen_height:
-                villian_cars.remove(villian_car)
+        if stats.game_active:
+            # gf.stop_game(settings, clock, start)
+            background.blitme()
+            gf.new_car(villian_cars, screen, settings)
+            hero_car.update()
+            villian_cars.update()
+            gf.update_cars(hero_car, villian_cars, settings, stats, screen, background)
+            # gf.stop_game(start_time, settings, clock, start)
 
-        gf.update_screen(settings, screen, hero_car, villian_cars)
+        gf.update_screen(hero_car, villian_cars)
 
 
 run_game()

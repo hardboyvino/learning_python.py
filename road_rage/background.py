@@ -40,6 +40,6 @@ class GameBackground(object):
             self.screen.blit(self.background, (0, i * self.background_height + self.scroll - self.background_height))
 
         # --- speed at which the background moves down the screen
-        self.scroll += 1
+        self.scroll += 3
         if abs(self.scroll) > self.background_height:
             self.scroll = 0
