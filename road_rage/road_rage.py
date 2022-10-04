@@ -4,8 +4,10 @@ The main program for the road rage game.
 
 import pygame
 from pygame.sprite import Group
+import math
 
 
+from background import GameBackground
 from settings import Settings
 from car import HeroCar
 import game_functions as gf
@@ -23,13 +25,16 @@ def run_game():
     pygame.display.set_caption("Road Rage")
 
     # --- create hero car instance
-    hero_car = HeroCar(screen)
+    hero_car = HeroCar(screen, settings.hero_car_speed)
     villian_cars = Group()
 
+    # --- create background instance
+    background = GameBackground(screen, settings.screen_width, settings.screen_height, settings.timer, settings.fps)
 
 
     # --- start the main loop for the game
     while True:
+        background.blitme()
         gf.check_events(hero_car)
         gf.new_car(villian_cars, screen, settings)
         hero_car.update()

@@ -27,6 +27,10 @@ def check_keyup_events(hero_car, event):
         hero_car.moving_right = False
     elif event.key == pygame.K_LEFT:
         hero_car.moving_left = False
+    elif event.key == pygame.K_UP:
+        hero_car.moving_up = False
+    elif event.key == pygame.K_DOWN:
+        hero_car.moving_down = False
 
 
 def check_keydown_events(hero_car, event):
@@ -35,6 +39,10 @@ def check_keydown_events(hero_car, event):
         hero_car.moving_right = True
     elif event.key == pygame.K_LEFT:
         hero_car.moving_left = True
+    elif event.key == pygame.K_UP:
+        hero_car.moving_up = True
+    elif event.key == pygame.K_DOWN:
+        hero_car.moving_down = True
 
     # --- quit the game when the escape key is pressed
     elif event.key == pygame.K_ESCAPE:
@@ -52,7 +60,7 @@ def update_screen(settings, screen, hero_car, villian_cars):
     """Update the screen with required images and background colours."""
     # --- fill the screen with specific background colour
     # --- draw the car to screen
-    screen.fill(settings.background_colour)
+    # screen.fill(settings.background_colour)
     hero_car.blitme()
 
     # --- draw each villian car in the group onscreen
