@@ -4,7 +4,6 @@ All the game functions.
 
 import sys
 import pygame
-from datetime import datetime
 
 from car import VillianCar
 
