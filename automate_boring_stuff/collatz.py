@@ -1,5 +1,5 @@
 """
-Program to practice automatic boring stuff functions chapter.
+Program to practice automatic boring stuff FUNCTIONS chapter.
 """
 
 
