@@ -22,6 +22,11 @@ elif first_argument == "list" and len(sys.argv) == 2:
 elif first_argument in dict_keys and len(sys.argv) == 2:
     pyperclip.copy(keywords[first_argument])
 
+# --- IF ARGUMENT IS DELETING KEYWORD
+elif first_argument == "del" and len(sys.argv) == 3:
+    keywords.pop(sys.argv[2])
+    print(keywords)
+
 # --- NOTIFY USER OF HOW TO USE PROGRAM PROPERLY
 else:
     print(
