@@ -7,7 +7,7 @@ import sys, pyperclip
 
 keywords = {"yes": "me", "no": "you"}
 dict_keys = list(keywords)
-first_argument = sys.argv[1]
+first_argument = sys.argv[1].lower()
 
 # --- IF ARGUMENT IS SAVING A KEYWORD TO THE DICTIONARY
 if first_argument == "save" and len(sys.argv) == 3:
