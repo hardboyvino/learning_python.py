@@ -24,4 +24,6 @@ elif first_argument in dict_keys and len(sys.argv) == 2:
 
 # --- NOTIFY USER OF HOW TO USE PROGRAM PROPERLY
 else:
-    print("Usage for saving:\npython filename save 'keyword'\n\nUsage for list of keywords:\npython filename list\n\nUsage for loading clipboard:\npython filename 'keyword'")
+    print(
+        "Usage for saving:\npython filename save 'keyword'\n\nUsage for list of keywords:\npython filename list\n\nUsage for loading clipboard:\npython filename 'keyword'"
+    )
