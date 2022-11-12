@@ -8,8 +8,7 @@ file = "madlibs.txt"
 
 
 with open(file, "w") as filename:
-    filename.write("""The ADJECTIVE panda walked to the NOUN and then VERB.
-A nearby NOUN was unaffected by these events.""")
+    filename.write("""The ADJECTIVE panda walked to the NOUN and then VERB. A nearby NOUN was unaffected by these events.""")
 
 # --- READ THE FILES CONTENT INTO A STRING
 with open(file, "r") as filename:
@@ -35,17 +34,15 @@ while True:
 
         # --- REQUEST A REPLACEMENT
         print("Enter an %s: " % (mo.group().lower()))
-        # word = input()
-
-        # # --- SUBSTITUTE THE KEYWORD OCCURENCE WITH THE REPLACEMENT WORD
-        # # --- ASSIGN THE RESULTING STRING INTO THE ORIGINAL VARIABLE
-        # sentence = grammar.sub(word, sentence, 1)
 
     elif mo.group() == "NOUN" or mo.group() == "VERB":
         # --- REQUEST A REPLACEMENT
         print("Enter a %s: " % (mo.group().lower()))
-        # word = input()
-        # sentence = grammar.sub(word, sentence, 1)
+
+    word = input()
+    # --- SUBSTITUTE THE KEYWORD OCCURENCE WITH THE REPLACEMENT WORD
+    # --- ASSIGN THE RESULTING STRING INTO THE ORIGINAL VARIABLE
+    sentence = grammar.sub(word, sentence, 1)
 
 
 with open(file, "w") as filename:
