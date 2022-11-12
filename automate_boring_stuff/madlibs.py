@@ -15,7 +15,6 @@ with open(file, "w") as filename:
 # --- READ THE FILES CONTENT INTO A STRING
 with open(file, "r") as filename:
     sentence = str(filename.read())
-    print(sentence)
 
 # # --- READ THE TEXT BACK LOOKING FOR THE 4 KEYWORDS ONE AT A TIME
 grammar = re.compile(r"ADJECTIVE|ADVERB|NOUN|VERB")
@@ -25,7 +24,6 @@ grammar = re.compile(r"ADJECTIVE|ADVERB|NOUN|VERB")
 while True:
     # --- SEARCH FOR THE FIRST OCCURENCE OF ANY OF THE KEYWORDS
     mo = grammar.search(sentence)
-    # print(mo.group())
 
     # --- IF THERE ARE NO KEYWORDS BREAK OUT OF LOOP
     if mo == None:
@@ -38,7 +36,6 @@ while True:
         print("Enter an %s: " % (mo.group().lower()))
 
     elif mo.group() == "NOUN" or mo.group() == "VERB":
-        # --- REQUEST A REPLACEMENT
         print("Enter a %s: " % (mo.group().lower()))
 
     word = input()
