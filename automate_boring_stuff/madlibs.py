@@ -8,7 +8,9 @@ file = "madlibs.txt"
 
 
 with open(file, "w") as filename:
-    filename.write("""The ADJECTIVE panda walked to the NOUN and then VERB. A nearby NOUN was unaffected by these events.""")
+    filename.write(
+        """The ADJECTIVE panda walked to the NOUN and then VERB. A nearby NOUN was unaffected by these events."""
+    )
 
 # --- READ THE FILES CONTENT INTO A STRING
 with open(file, "r") as filename:
