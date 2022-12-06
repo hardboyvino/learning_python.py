@@ -9,6 +9,7 @@ import shutil, os, re
 with open("03-17-1989.csv", "w") as f:
     f.write("I am the best in the world!")
 
+# delete the old file in the folder
 try:
     os.unlink("17-03-1989.csv")
 except FileNotFoundError:
