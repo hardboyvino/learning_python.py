@@ -11,6 +11,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from time import sleep
 
+filename = open("play_2048_high_scores.txt", "w")
+filename.close()
+
 # open the game in browser
 # bypass the endless loading once the html shows on screen
 capa = DesiredCapabilities.CHROME
@@ -30,10 +33,12 @@ buttons = driver.find_element(By.XPATH, "//html")
 while True:
     try:
         # check for the try again button
-        # print the current high score
+        # save the current high score to a text file
         driver.find_element(By.XPATH, "/html/body/div[1]/div[3]/div[1]/div/a[2]").click()
         high_score = driver.find_element(By.CSS_SELECTOR, ".best-container")
-        print(high_score.text)
+
+        with open("play_2048_high_scores.txt", "a") as f:
+            f.write(f"{str(high_score.text)}\n")
     except Exception as ex:
         buttons.send_keys(Keys.UP)
         buttons.send_keys(Keys.RIGHT)
