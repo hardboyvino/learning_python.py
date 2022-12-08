@@ -11,7 +11,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from time import sleep
 
-filename = open("play_2048_high_scores.txt", "w")
+# open a new csv or wipe the existing one
+filename = open("play_2048_high_scores.csv", "w")
 filename.close()
 
 # open the game in browser
@@ -30,15 +31,18 @@ sleep(3)
 # repeatedly press up, right, down, left in that order
 buttons = driver.find_element(By.XPATH, "//html")
 
-while True:
+count = 1
+while count <= 1000:
     try:
         # check for the try again button
         # save the current high score to a text file
         driver.find_element(By.XPATH, "/html/body/div[1]/div[3]/div[1]/div/a[2]").click()
         high_score = driver.find_element(By.CSS_SELECTOR, ".best-container")
 
-        with open("play_2048_high_scores.txt", "a") as f:
-            f.write(f"{str(high_score.text)}\n")
+        with open("play_2048_high_scores.csv", "a") as f:
+            f.write(f"The high score as of game {count} is {str(high_score.text)}.\n")
+
+        count += 1
     except Exception as ex:
         buttons.send_keys(Keys.UP)
         buttons.send_keys(Keys.RIGHT)
