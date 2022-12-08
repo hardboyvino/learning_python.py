@@ -35,7 +35,7 @@ count = 1
 while count <= 1000:
     try:
         # check for the try again button
-        # save the current high score to a text file
+        # save the current high score to a csv file
         driver.find_element(By.XPATH, "/html/body/div[1]/div[3]/div[1]/div/a[2]").click()
         high_score = driver.find_element(By.CSS_SELECTOR, ".best-container")
 
