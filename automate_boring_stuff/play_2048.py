@@ -21,6 +21,7 @@ wait = WebDriverWait(driver, 10)
 driver.get("https://gabrielecirulli.github.io/2048/")
 wait.until(EC.presence_of_element_located((By.XPATH, "//html")))
 
+# wait for the endless loading to resolve itself then game commences
 sleep(3)
 
 # repeatedly press up, right, down, left in that order
