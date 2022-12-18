@@ -23,17 +23,19 @@ driver = webdriver.Chrome(desired_capabilities=capa)
 
 wait = WebDriverWait(driver, 10)
 driver.get("https://gabrielecirulli.github.io/2048/")
+driver.maximize_window()
 wait.until(EC.presence_of_element_located((By.XPATH, "//html")))
 
 # wait for the endless loading to resolve itself then game commences
 sleep(3)
 
-# repeatedly press up, right, down, left in that order
+# find the game board and repeatedly press up, right, down, left in that order
 buttons = driver.find_element(By.XPATH, "//html")
 
 count = 1
 while count <= 1000:
     try:
+        # code will crash when game is done
         # check for the try again button
         # save the current high score to a csv file
         driver.find_element(By.XPATH, "/html/body/div[1]/div[3]/div[1]/div/a[2]").click()
